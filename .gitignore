@@ -1,0 +1,6 @@
+*.mhtml
+*.tmp
+_*.txt
+.claude/
+.DS_Store
+Thumbs.db
