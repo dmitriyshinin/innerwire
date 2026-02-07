@@ -1,0 +1,66 @@
+# Translation status
+# source_version: version of the English source that was translated
+# status: synced | outdated | missing
+# last_updated: date of last translation update
+
+layers:
+  layer-0-autonomic:
+    en:
+      status: synced
+      version: "0.1"
+      last_updated: "2026-02-07"
+    ru:
+      status: synced
+      source_version: "0.1"
+      last_updated: "2026-02-07"
+
+  layer-1-interoception:
+    en:
+      status: synced
+      version: "0.2-draft"
+      last_updated: "2026-02-07"
+    ru:
+      status: synced
+      source_version: "0.2-draft"
+      last_updated: "2026-02-07"
+
+  layer-2-sensory:
+    en:
+      status: synced
+      version: "0.2-draft"
+      last_updated: "2026-02-07"
+    ru:
+      status: synced
+      source_version: "0.2-draft"
+      last_updated: "2026-02-07"
+
+  layer-3-attachment:
+    en:
+      status: synced
+      version: "0.2-draft"
+      last_updated: "2026-02-07"
+    ru:
+      status: synced
+      source_version: "0.2-draft"
+      last_updated: "2026-02-07"
+
+  layer-4-allostatic-load:
+    en:
+      status: synced
+      version: "0.2-draft"
+      last_updated: "2026-02-07"
+    ru:
+      status: synced
+      source_version: "0.2-draft"
+      last_updated: "2026-02-07"
+
+project_files:
+  README.md:
+    format: bilingual_inline
+    status: synced
+  CONTRIBUTING.md:
+    format: bilingual_inline
+    status: synced
+  architecture.md:
+    format: bilingual_inline
+    status: synced

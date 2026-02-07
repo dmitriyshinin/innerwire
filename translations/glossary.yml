@@ -1,0 +1,163 @@
+# InnerWire Terminology Glossary
+# Format: term, EN definition, RU translation, notes
+
+general:
+  - term: layer
+    en: layer
+    ru: слой
+    note: "Not 'level' — layers are independent, not hierarchical"
+
+  - term: pattern
+    en: pattern
+    ru: паттерн
+    note: "Not 'type' — patterns are tendencies, not categories"
+
+  - term: spectrum / axis
+    en: spectrum, axis
+    ru: спектр, ось
+    note: "Continuous, not discrete"
+
+  - term: profile
+    en: profile
+    ru: профиль
+    note: "A snapshot of where someone falls on multiple axes"
+
+  - term: mode
+    en: mode
+    ru: режим
+    note: "For autonomic states specifically. Not 'state' (too clinical) or 'type'"
+
+  - term: self-observation
+    en: self-observation
+    ru: самонаблюдение
+    note: "Not 'test' or 'diagnosis'"
+
+layer-0-autonomic:
+  - term: connection mode
+    en: connection mode
+    ru: режим связи
+    note: "Ventral vagal activation. Not 'calm' (too passive)"
+
+  - term: mobilization mode
+    en: mobilization mode
+    ru: режим мобилизации
+    note: "Sympathetic activation. Not 'stress' (too broad)"
+
+  - term: freeze mode
+    en: freeze mode
+    ru: режим замирания
+    note: "Dorsal vagal. 'Замирание' (state), not 'замерзание' (freezing/cold)"
+
+  - term: ventral vagus
+    en: ventral vagus
+    ru: вентральный вагус
+    note: "Keep Latin-based term in Russian"
+
+  - term: polyvagal theory
+    en: Polyvagal Theory
+    ru: поливагальная теория
+    note: "Capitalize in English, lowercase in Russian"
+
+  - term: neuroception
+    en: neuroception
+    ru: нейроцепция
+    note: "Porges' term — subconscious threat/safety detection"
+
+layer-1-interoception:
+  - term: interoception
+    en: interoception
+    ru: интероцепция
+    note: "Sensing internal body signals"
+
+  - term: interoceptive accuracy
+    en: interoceptive accuracy
+    ru: интероцептивная точность
+    note: "Objective ability to detect body signals (e.g., heartbeat detection)"
+
+  - term: interoceptive sensibility
+    en: interoceptive sensibility
+    ru: интероцептивная чувствительность
+    note: "Self-reported attention to body signals"
+
+  - term: interoceptive awareness
+    en: interoceptive awareness
+    ru: интероцептивная осведомлённость
+    note: "Metacognitive accuracy — how well self-reports match objective measures"
+
+layer-2-sensory:
+  - term: neurological threshold
+    en: neurological threshold
+    ru: неврологический порог
+    note: "How much stimulation needed for neuron firing"
+
+  - term: sensory sensitivity
+    en: sensory sensitivity
+    ru: сенсорная чувствительность
+    note: "Low threshold + passive response"
+
+  - term: sensation seeking
+    en: sensation seeking
+    ru: поиск ощущений
+    note: "High threshold + active response"
+
+  - term: sensation avoiding
+    en: sensation avoiding
+    ru: избегание ощущений
+    note: "Low threshold + active response"
+
+  - term: low registration
+    en: low registration
+    ru: низкая регистрация
+    note: "High threshold + passive response"
+
+layer-3-attachment:
+  - term: attachment anxiety
+    en: attachment anxiety
+    ru: тревожность привязанности
+    note: "Fear of abandonment axis"
+
+  - term: attachment avoidance
+    en: attachment avoidance
+    ru: избегание привязанности
+    note: "Discomfort with closeness axis"
+
+  - term: secure
+    en: secure
+    ru: надёжный
+    note: "Low anxiety + low avoidance zone"
+
+  - term: preoccupied
+    en: preoccupied
+    ru: тревожно-озабоченный
+    note: "High anxiety + low avoidance zone"
+
+  - term: dismissing
+    en: dismissing
+    ru: отвергающий
+    note: "Low anxiety + high avoidance zone"
+
+  - term: fearful
+    en: fearful
+    ru: тревожно-избегающий
+    note: "High anxiety + high avoidance zone"
+
+layer-4-allostatic-load:
+  - term: allostasis
+    en: allostasis
+    ru: аллостаз
+    note: "Stability through change (Sterling)"
+
+  - term: allostatic load
+    en: allostatic load
+    ru: аллостатическая нагрузка
+    note: "Cumulative wear from chronic stress (McEwen)"
+
+  - term: allostatic overload
+    en: allostatic overload
+    ru: аллостатическая перегрузка
+    note: "When load exceeds capacity to cope"
+
+  - term: biomarker
+    en: biomarker
+    ru: биомаркер
+    note: "Measurable indicator of biological state"
