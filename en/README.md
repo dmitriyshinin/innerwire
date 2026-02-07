@@ -26,10 +26,10 @@ InnerWire is a model of individual differences built on measurable parameters of
 | Layer | Name | Core idea | Status |
 |-------|------|-----------|--------|
 | 0 | [Autonomic Profile](model/layer-0-autonomic/) | Three modes of the nervous system | 🟡 draft |
-| 1 | Interoceptive Profile | How well you sense your own body | ⚪ planned |
-| 2 | Sensory Profile | How you process sensory information | ⚪ planned |
-| 3 | Attachment Pattern | How you build closeness with others | ⚪ planned |
-| 4 | Allostatic Load | Current level of accumulated stress | ⚪ planned |
+| 1 | [Interoceptive Profile](model/layer-1-interoception/) | How well you sense your own body | 🟡 draft |
+| 2 | [Sensory Profile](model/layer-2-sensory/) | How you process sensory information | 🟡 draft |
+| 3 | [Attachment Pattern](model/layer-3-attachment/) | How you build closeness with others | 🟡 draft |
+| 4 | [Allostatic Load](model/layer-4-allostatic-load/) | Current level of accumulated stress | 🟡 draft |
 
 **Each layer includes:**
 - Description accessible without specialized education
