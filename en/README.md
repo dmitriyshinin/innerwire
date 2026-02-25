@@ -40,7 +40,9 @@ InnerWire is a model of how you work — your nervous system, perception, stress
 
 ## How to read
 
-**If you're new here** — start with [Layer 0: Autonomic Profile](model/layer-0-autonomic/). It's self-sufficient and can already give you useful information about yourself.
+**If you're new here** — start with the [Quick Profile](quick-profile/): your full picture in 20 minutes.
+
+**If you want to go deeper** — explore individual layers, starting with [Layer 0: Autonomic Profile](model/layer-0-autonomic/).
 
 **If you're a professional** — check the [sources](model/layer-0-autonomic/sources.md) and [bibliography](../research/bibliography.md).
 

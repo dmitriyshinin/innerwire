@@ -4,6 +4,16 @@
 # last_updated: date of last translation update
 
 layers:
+  quick-profile:
+    en:
+      status: synced
+      version: "0.2-draft"
+      last_updated: "2026-02-25"
+    ru:
+      status: synced
+      source_version: "0.2-draft"
+      last_updated: "2026-02-25"
+
   layer-0-autonomic:
     en:
       status: synced

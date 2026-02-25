@@ -16,6 +16,8 @@ MVP of all five layers. Each layer has: description, questionnaire, practices, s
 - [x] Architecture documentation
 - [x] Translation infrastructure (glossary, status tracking, guide)
 - [x] Style guide and layer template
+- [x] Depth levels architecture (Mirror / Map / Lab)
+- [x] Quick Profile — "Mirror" level (questionnaire + practices across all axes)
 
 ## v0.3 — "Integration & Polish" (target: May 1, 2026)
 
