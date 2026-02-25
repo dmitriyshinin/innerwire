@@ -10,13 +10,16 @@ InnerWire is a science-based open-source framework for self-awareness. It provid
 /
 ├── en/                    # English content (source of truth)
 │   ├── README.md          # English guide
+│   ├── quick-profile/     # "Mirror" level — quick profile across all axes
 │   └── model/
-│       └── layer-N-xxx/   # Each layer: description, questionnaire, practices, sources, README
+│       └── layer-N-xxx/   # "Map" level — each layer: description, questionnaire, practices, sources, README
+│                          # "Lab" level — deep-dive.md within each layer
 ├── ru/                    # Russian content (translation)
 │   ├── README.md
+│   ├── quick-profile/
 │   └── model/
 │       └── layer-N-xxx/
-├── research/              # Bibliography and annotated sources
+├── research/              # Bibliography and annotated sources (Lab level)
 ├── templates/             # Layer template for consistent structure
 ├── translations/          # Translation status, glossary, guide
 ├── README.md              # Root bilingual README
@@ -27,6 +30,15 @@ InnerWire is a science-based open-source framework for self-awareness. It provid
 └── LICENSE                # CC BY-SA 4.0
 ```
 
+## Two axes of the model
+
+**Layers (vertical):** five independent aspects — autonomic, interoception, sensory, attachment, allostatic load. Each is self-contained.
+
+**Depth levels (horizontal):** three levels of detail that cut across all layers:
+- **Mirror** — quick profile, self-recognition, starter practices (~20 min)
+- **Map** — full explanations, questionnaires, detailed practices
+- **Lab** — full scientific basis, criticism, primary sources
+
 ## Five principles (always follow)
 
 1. **Scientific basis** — every claim must reference peer-reviewed research. No opinions, no pop-psychology without citations.
@@ -34,6 +46,7 @@ InnerWire is a science-based open-source framework for self-awareness. It provid
 3. **Layers** — each layer is self-sufficient. Don't require knowledge of other layers.
 4. **Dynamic** — profiles change. Never write "you ARE this type." Write "your current pattern tends toward..."
 5. **Open** — acknowledge limitations, include criticism of theories used.
+6. **Agency over identity** — the reader is the author. Show where they are, what shaped it, and what they can change. Provide tools, not labels.
 
 ## Content rules
 
