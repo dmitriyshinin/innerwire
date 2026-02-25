@@ -4,14 +4,14 @@
 
 ## What is this
 
-InnerWire is a model of individual differences built on measurable parameters of the nervous system, perception, and behavior. Unlike popular typologies (MBTI, Socionics, Human Design), InnerWire doesn't offer pseudoscientific "types." Instead, it offers a profile across several axes, each backed by peer-reviewed research.
+InnerWire is a model of how you work — your nervous system, perception, stress response, and relationship patterns. It gives you a profile across several axes, each grounded in peer-reviewed research. Not a fixed label, but a map: understand where you are, see what influences it, and get concrete tools to change what isn't working.
 
 ## Who it's for
 
-- People who want to understand themselves but can't bring themselves to believe in astrology
-- People who value evidence and want to see citations
+- People who want to understand themselves — and do something with that understanding
+- People who appreciate evidence and want to see what the science actually says
 - People looking not just for descriptions but for actionable practices
-- Professionals who need an integrative framework
+- Professionals who need an integrative framework grounded in research
 
 ## Principles
 

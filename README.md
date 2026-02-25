@@ -19,9 +19,9 @@
 
 ## What is InnerWire? / Что такое InnerWire?
 
-InnerWire is an open model of individual differences based on measurable parameters from neuroscience, physiology, and psychology. Unlike popular typologies (MBTI, Socionics, Human Design), InnerWire doesn't offer pseudoscientific "types." Instead — a profile across several axes, each backed by peer-reviewed research.
+InnerWire is an open model of how you function — your nervous system, perception, stress response, and relationship patterns. A profile across several axes, each grounded in peer-reviewed research. Not a label to live with, but a map to navigate by.
 
-InnerWire — открытая модель индивидуальных различий, основанная на измеримых параметрах из нейробиологии, физиологии и психологии. В отличие от популярных типологий (MBTI, соционика, Дизайн Человека), InnerWire не предлагает псевдонаучных «типов». Вместо этого — профиль по нескольким осям, за каждой из которых стоят рецензированные исследования.
+InnerWire — открытая модель того, как ты функционируешь: нервная система, восприятие, реакция на стресс, паттерны отношений. Профиль по нескольким осям, каждая из которых опирается на рецензированные исследования. Не ярлык, с которым нужно смириться, а карта, по которой можно двигаться.
 
 ## Principles / Принципы
 

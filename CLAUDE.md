@@ -2,7 +2,7 @@
 
 ## Project overview
 
-InnerWire is a science-based open-source framework for self-awareness. It provides individual profiles across multiple axes grounded in peer-reviewed neuroscience, physiology, and psychology research. It is an alternative to pseudoscientific typologies (MBTI, Socionics, Human Design).
+InnerWire is a science-based open-source framework for self-awareness. It provides individual profiles across multiple axes grounded in peer-reviewed neuroscience, physiology, and psychology research. The core idea: your profile is not a fixed label but a starting point — understand how you work, see what influences it, and get concrete tools to change what isn't working.
 
 ## Repository structure
 
