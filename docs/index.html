@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InnerWire — Быстрый профиль</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #faf8f4;
+  --bg-warm: #f5f0e8;
+  --bg-card: #ffffff;
+  --text: #2c2825;
+  --text-secondary: #6b6560;
+  --text-light: #9a938d;
+  --accent: #c47d4e;
+  --accent-soft: #e8cdb8;
+  --accent-glow: rgba(196, 125, 78, 0.12);
+  --green: #5a8a6a;
+  --green-soft: #dce8df;
+  --yellow: #c4a24e;
+  --yellow-soft: #f0e6c8;
+  --red: #b85c5c;
+  --red-soft: #f0d4d4;
+  --blue: #5a7a9a;
+  --blue-soft: #d4e0ec;
+  --purple: #7a6a8a;
+  --purple-soft: #e0d8e8;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+  --shadow-lg: 0 8px 32px rgba(44, 40, 37, 0.08);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Literata', serif; }
+
+/* ─── Layout ─── */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(196, 125, 78, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(90, 138, 106, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-logo {
+  font-family: 'Literata', serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: 'Literata', serif;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 440px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+
+.hero-meta span {
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta span::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
+.btn-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 40, 37, 0.15);
+}
+
+.btn-start .arrow {
+  transition: var(--transition);
+}
+
+.btn-start:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ─── Quiz ─── */
+.quiz { display: none; padding: 40px 0 120px; }
+.quiz.active { display: block; }
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-top: 40px;
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Literata', serif;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ─── Questions ─── */
+.question-group {
+  margin-bottom: 40px;
+}
+
+.question-group-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.question-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.question-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.question-text {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.question-text.large {
+  font-family: 'Literata', serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* ─── Slider ─── */
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.slider-labels span {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.slider-container {
+  flex: 1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-warm);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(196, 125, 78, 0.3);
+  transition: var(--transition);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(196, 125, 78, 0.3);
+  cursor: pointer;
+}
+
+.slider-value {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+/* ─── Percentage Input ─── */
+.pct-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.pct-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+}
+
+.pct-emoji {
+  font-size: 24px;
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pct-label {
+  flex: 1;
+  font-size: 15px;
+}
+
+.pct-label strong {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.pct-label small {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.pct-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.pct-input-wrap input {
+  width: 52px;
+  padding: 8px 4px;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent);
+  border: 2px solid var(--bg-warm);
+  border-radius: 8px;
+  background: var(--bg);
+  outline: none;
+  transition: var(--transition);
+}
+
+.pct-input-wrap input:focus {
+  border-color: var(--accent);
+}
+
+.pct-input-wrap span {
+  font-size: 16px;
+  color: var(--text-light);
+}
+
+.pct-total {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-light);
+  padding: 8px;
+}
+
+.pct-total.warn { color: var(--red); }
+.pct-total.ok { color: var(--green); }
+
+/* ─── Radio Choices ─── */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.choice-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.choice-btn:hover {
+  border-color: var(--accent-soft);
+}
+
+.choice-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.choice-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--text-light);
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.choice-btn.selected .choice-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.choice-btn.selected .choice-dot::after {
+  content: '';
+  position: absolute;
+  top: 4px; left: 4px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* ─── Navigation ─── */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  margin-top: 24px;
+}
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--bg-warm);
+}
+
+.btn-back:hover { border-color: var(--text-light); }
+
+.btn-next {
+  background: var(--text);
+  color: var(--bg);
+  margin-left: auto;
+}
+
+.btn-next:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(44, 40, 37, 0.15);
+}
+
+/* ─── Results ─── */
+.results {
+  display: none;
+  padding: 40px 0 80px;
+}
+
+.results.active { display: block; }
+
+.results-header {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+
+.results-header h1 {
+  font-family: 'Literata', serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 400;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s forwards;
+}
+
+.results-header p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: fadeUp 0.6s 0.4s forwards;
+}
+
+/* ─── Radar Chart ─── */
+.chart-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.5s forwards;
+}
+
+.chart-wrap svg {
+  max-width: 380px;
+  width: 100%;
+}
+
+.radar-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  fill: var(--text-secondary);
+}
+
+.radar-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--accent);
+}
+
+.radar-grid {
+  stroke: var(--bg-warm);
+  stroke-width: 1;
+  fill: none;
+}
+
+.radar-shape {
+  fill: rgba(196, 125, 78, 0.12);
+  stroke: var(--accent);
+  stroke-width: 2;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radar-dot {
+  fill: var(--accent);
+  stroke: var(--bg-card);
+  stroke-width: 2;
+}
+
+/* ─── Result Cards ─── */
+.result-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  animation: fadeUp 0.5s forwards;
+}
+
+.result-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.result-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.result-card-header h3 {
+  font-family: 'Literata', serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.result-card-header .result-tag {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.result-description {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.result-practice {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+
+.result-practice-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.result-practice p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.color-green .result-icon { background: var(--green-soft); }
+.color-green .result-tag { background: var(--green-soft); color: var(--green); }
+.color-yellow .result-icon { background: var(--yellow-soft); }
+.color-yellow .result-tag { background: var(--yellow-soft); color: var(--yellow); }
+.color-red .result-icon { background: var(--red-soft); }
+.color-red .result-tag { background: var(--red-soft); color: var(--red); }
+.color-blue .result-icon { background: var(--blue-soft); }
+.color-blue .result-tag { background: var(--blue-soft); color: var(--blue); }
+.color-purple .result-icon { background: var(--purple-soft); }
+.color-purple .result-tag { background: var(--purple-soft); color: var(--purple); }
+
+/* ─── CTA ─── */
+.results-cta {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0;
+  animation: fadeUp 0.6s 2s forwards;
+}
+
+.results-cta p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.results-cta a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--accent-soft);
+  transition: var(--transition);
+}
+
+.results-cta a:hover {
+  border-color: var(--accent);
+}
+
+.btn-restart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--bg-warm);
+  border-radius: 100px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 16px;
+}
+
+.btn-restart:hover { border-color: var(--text-light); }
+
+/* ─── Disclaimer ─── */
+.disclaimer {
+  font-size: 13px;
+  color: var(--text-light);
+  text-align: center;
+  padding: 32px 24px;
+  line-height: 1.5;
+  border-top: 1px solid var(--bg-warm);
+  margin-top: 40px;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeUp 0.5s forwards;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .pct-row { padding: 16px; gap: 12px; }
+  .question-card { padding: 20px; }
+  .result-card { padding: 20px; }
+  .hero-meta { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-logo">InnerWire</div>
+  <h1 class="serif">Как ты устроен<br>прямо сейчас</h1>
+  <p>Пять осей. Пятнадцать минут. Честная картина того, как работает твоё тело, восприятие и отношения — и что с этим можно делать.</p>
+  <div class="hero-meta">
+    <span>~15 минут</span>
+    <span>5 осей</span>
+    <span>без регистрации</span>
+  </div>
+  <button class="btn-start" onclick="startQuiz()">
+    Начать
+    <span class="arrow">→</span>
+  </button>
+</section>
+
+<!-- ─── QUIZ ─── -->
+<section class="quiz" id="quiz">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="container" id="quizContent"></div>
+</section>
+
+<!-- ─── RESULTS ─── -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="results-header">
+      <h1 class="serif">Твой профиль</h1>
+      <p>Снимок того, где ты сейчас — не приговор, а отправная точка</p>
+    </div>
+    <div class="chart-wrap" id="chartWrap"></div>
+    <div id="resultCards"></div>
+    <div class="results-cta">
+      <p>Это быстрый профиль. У каждой оси есть полный слой с развёрнутыми объяснениями, полными опросниками и подробными практиками.</p>
+      <p><a href="https://github.com/dmitriyshinin/innerwire" target="_blank">Узнать подробнее на GitHub →</a></p>
+      <button class="btn-restart" onclick="restart()">Пройти заново</button>
+    </div>
+    <div class="disclaimer">
+      Это инструмент самонаблюдения, а не клинический тест. Его цель — узнавание себя, не диагностика. Если ты переживаешь серьёзные трудности, пожалуйста, обратись к специалисту.
+    </div>
+  </div>
+</section>
+
+<script>
+// ─── DATA ───
+const sections = [
+  {
+    id: 'autonomic',
+    num: 1,
+    title: 'Нервная система',
+    subtitle: 'Три режима. Где ты проводишь больше всего времени?',
+    icon: '🌊',
+    color: 'green',
+    questions: [
+      {
+        type: 'pct',
+        items: [
+          { id: 'a0_conn', emoji: '🟢', label: 'Спокойная включённость', desc: 'Сосредоточен, расслаблен, контактен' },
+          { id: 'a0_mob', emoji: '🟡', label: 'На взводе', desc: 'Тревога, раздражение, невозможность остановиться' },
+          { id: 'a0_freeze', emoji: '🔴', label: 'Отключка', desc: 'Мало энергии, автопилот, эмоции приглушены' },
+        ]
+      },
+      {
+        type: 'choice',
+        text: 'Когда случается стресс — что происходит первым?',
+        id: 'a0_stress_first',
+        options: [
+          { label: 'Активация — сердце ускоряется, порыв действовать', value: 'mob' },
+          { label: 'Отключение — немею, туман, хочу спрятаться', value: 'freeze' },
+          { label: 'Остаюсь включённым и ищу решение', value: 'conn' },
+        ]
+      },
+      {
+        type: 'choice',
+        text: 'Через час стресса — где ты?',
+        id: 'a0_stress_after',
+        options: [
+          { label: 'Всё ещё на взводе, не могу успокоиться', value: 'mob' },
+          { label: 'Обвал — нет энергии, завис', value: 'freeze' },
+          { label: 'В основном восстановился', value: 'conn' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'interoception',
+    num: 2,
+    title: 'Ощущение тела',
+    subtitle: 'Насколько хорошо ты слышишь сигналы изнутри?',
+    icon: '🫀',
+    color: 'yellow',
+    questions: [
+      { type: 'slider', id: 'i1', text: 'Я замечаю, когда моё дыхание меняется', min: 1, max: 5 },
+      { type: 'slider', id: 'i2', text: 'Я могу отличить голод от простого желания поесть', min: 1, max: 5 },
+      { type: 'slider', id: 'i3', text: 'Я чувствую стресс в теле раньше, чем могу назвать эмоцию', min: 1, max: 5 },
+      { type: 'slider', id: 'i4', text: 'Я замечаю напряжение в мышцах без подсказки со стороны', min: 1, max: 5 },
+      { type: 'slider', id: 'i5', text: 'Я замечаю изменения в уровне энергии в течение дня', min: 1, max: 5 },
+    ]
+  },
+  {
+    id: 'sensory',
+    num: 3,
+    title: 'Сенсорная обработка',
+    subtitle: 'Как твоя система обрабатывает входящую информацию?',
+    icon: '👁',
+    color: 'blue',
+    questions: [
+      { type: 'slider', id: 's1', text: 'Фоновый шум мешает мне сосредоточиться', min: 1, max: 5 },
+      { type: 'slider', id: 's2', text: 'Яркий свет или мерцающие экраны беспокоят больше, чем других', min: 1, max: 5 },
+      { type: 'slider', id: 's3', text: 'Некоторые текстуры (бирки, грубые ткани) невозможно игнорировать', min: 1, max: 5 },
+      { type: 'slider', id: 's4', text: 'После насыщенного дня мне нужна тишина для восстановления', min: 1, max: 5 },
+      { type: 'slider', id: 's5', text: 'Мне скучно и неспокойно в тихой среде с минимумом стимулов', min: 1, max: 5 },
+    ]
+  },
+  {
+    id: 'attachment',
+    num: 4,
+    title: 'Близость с другими',
+    subtitle: 'Что происходит, когда в отношениях возникает неопределённость?',
+    icon: '🤝',
+    color: 'purple',
+    questions: [
+      { type: 'slider', id: 'at1', text: 'Я переживаю, что близкие люди могут меня оставить', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+      { type: 'slider', id: 'at2', text: 'Когда партнёр не отвечает, я начинаю представлять худшее', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+      { type: 'slider', id: 'at3', text: 'Мне трудно полностью поверить, что люди останутся', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+      { type: 'slider', id: 'at4', text: 'Я предпочитаю не зависеть от других', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+      { type: 'slider', id: 'at5', text: 'Когда кто-то становится слишком близко, хочу отстраниться', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+      { type: 'slider', id: 'at6', text: 'Мне комфортнее с независимостью, чем с близостью', min: 1, max: 7, labels: ['не согласен', 'согласен'] },
+    ]
+  },
+  {
+    id: 'allostatic',
+    num: 5,
+    title: 'Стрессовая нагрузка',
+    subtitle: 'Сколько накопленного стресса несёт твоё тело?',
+    icon: '🔋',
+    color: 'red',
+    questions: [
+      { type: 'slider', id: 'al1', text: 'Просыпаюсь уставшим даже после достаточного сна', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al2', text: 'Болею чаще, чем раньше', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al3', text: 'Сон нарушен', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al4', text: 'Постоянное мышечное напряжение или боли', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al5', text: 'Туман в голове — трудно сосредоточиться', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al6', text: 'Эмоционально плоский или легко перегружаюсь', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+      { type: 'slider', id: 'al7', text: 'Мелкие проблемы кажутся большими', min: 0, max: 3, labels: ['нет', 'постоянно'] },
+    ]
+  }
+];
+
+const answers = {};
+let currentSection = 0;
+
+// ─── RENDER ───
+
+function startQuiz() {
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('quiz').classList.add('active');
+  renderSection(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderSection(idx) {
+  currentSection = idx;
+  const s = sections[idx];
+  const total = sections.length;
+  const pct = ((idx) / total) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+
+  let html = `
+    <div class="section-header fade-in">
+      <div class="section-number">${s.num}</div>
+      <h2 class="section-title serif">${s.title}</h2>
+      <p class="section-subtitle">${s.subtitle}</p>
+    </div>
+  `;
+
+  s.questions.forEach((q, qi) => {
+    const delay = 0.1 + qi * 0.06;
+    if (q.type === 'pct') {
+      html += renderPct(q, delay);
+    } else if (q.type === 'slider') {
+      html += renderSlider(q, delay);
+    } else if (q.type === 'choice') {
+      html += renderChoice(q, delay);
+    }
+  });
+
+  html += `
+    <div class="nav-row fade-in" style="animation-delay:0.5s">
+      ${idx > 0 ? '<button class="btn-nav btn-back" onclick="prevSection()">← Назад</button>' : '<div></div>'}
+      <button class="btn-nav btn-next" onclick="nextSection()">
+        ${idx < total - 1 ? 'Далее →' : 'Увидеть профиль →'}
+      </button>
+    </div>
+  `;
+
+  document.getElementById('quizContent').innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  bindInteractions();
+}
+
+function renderPct(q, delay) {
+  let html = `<div class="pct-group fade-in" style="animation-delay:${delay}s">`;
+  q.items.forEach(item => {
+    const val = answers[item.id] || '';
+    html += `
+      <div class="pct-row">
+        <div class="pct-emoji">${item.emoji}</div>
+        <div class="pct-label">
+          <strong>${item.label}</strong>
+          <small>${item.desc}</small>
+        </div>
+        <div class="pct-input-wrap">
+          <input type="number" min="0" max="100" value="${val}" data-id="${item.id}" class="pct-field" placeholder="—">
+          <span>%</span>
+        </div>
+      </div>
+    `;
+  });
+  html += `<div class="pct-total" id="pctTotal"></div>`;
+  html += `</div>`;
+  return html;
+}
+
+function renderSlider(q, delay) {
+  const mid = Math.round((q.min + q.max) / 2);
+  const val = answers[q.id] !== undefined ? answers[q.id] : mid;
+  const lblLeft = q.labels ? q.labels[0] : q.min;
+  const lblRight = q.labels ? q.labels[1] : q.max;
+  return `
+    <div class="question-card fade-in" style="animation-delay:${delay}s">
+      <div class="question-text">${q.text}</div>
+      <div class="slider-row">
+        <div class="slider-container">
+          <input type="range" min="${q.min}" max="${q.max}" value="${val}" data-id="${q.id}" step="1">
+          <div class="slider-labels"><span>${lblLeft}</span><span>${lblRight}</span></div>
+        </div>
+        <div class="slider-value" data-display="${q.id}">${val}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderChoice(q, delay) {
+  const selected = answers[q.id] || null;
+  let html = `
+    <div class="question-card fade-in" style="animation-delay:${delay}s">
+      <div class="question-text">${q.text}</div>
+      <div class="choices">
+  `;
+  q.options.forEach(opt => {
+    const sel = selected === opt.value ? ' selected' : '';
+    html += `
+      <button class="choice-btn${sel}" data-id="${q.id}" data-value="${opt.value}">
+        <div class="choice-dot"></div>
+        ${opt.label}
+      </button>
+    `;
+  });
+  html += `</div></div>`;
+  return html;
+}
+
+function bindInteractions() {
+  // Sliders
+  document.querySelectorAll('input[type="range"]').forEach(el => {
+    const update = () => {
+      const id = el.dataset.id;
+      answers[id] = parseInt(el.value);
+      const display = document.querySelector(`[data-display="${id}"]`);
+      if (display) display.textContent = el.value;
+    };
+    el.addEventListener('input', update);
+    update();
+  });
+
+  // Percentage fields
+  document.querySelectorAll('.pct-field').forEach(el => {
+    el.addEventListener('input', () => {
+      const id = el.dataset.id;
+      const val = parseInt(el.value) || 0;
+      answers[id] = val;
+      updatePctTotal();
+    });
+  });
+  updatePctTotal();
+
+  // Choices
+  document.querySelectorAll('.choice-btn').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      const val = el.dataset.value;
+      answers[id] = val;
+      el.closest('.choices').querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+    });
+  });
+}
+
+function updatePctTotal() {
+  const fields = document.querySelectorAll('.pct-field');
+  const totalEl = document.getElementById('pctTotal');
+  if (!totalEl) return;
+  let sum = 0;
+  fields.forEach(f => { sum += parseInt(f.value) || 0; });
+  if (sum === 0) {
+    totalEl.textContent = '';
+    totalEl.className = 'pct-total';
+  } else if (sum === 100) {
+    totalEl.textContent = `Итого: ${sum}% ✓`;
+    totalEl.className = 'pct-total ok';
+  } else {
+    totalEl.textContent = `Итого: ${sum}% (нужно 100%)`;
+    totalEl.className = 'pct-total warn';
+  }
+}
+
+function nextSection() {
+  if (currentSection < sections.length - 1) {
+    renderSection(currentSection + 1);
+  } else {
+    showResults();
+  }
+}
+
+function prevSection() {
+  if (currentSection > 0) renderSection(currentSection - 1);
+}
+
+// ─── RESULTS ───
+
+function computeResults() {
+  // 1. Autonomic: normalize to 0–1 for radar
+  const conn = (answers.a0_conn || 33) / 100;
+  const mob = (answers.a0_mob || 33) / 100;
+  const frz = (answers.a0_freeze || 34) / 100;
+  let autoLabel, autoDesc, autoPractice;
+  if (conn >= mob && conn >= frz) {
+    autoLabel = 'Связь доступна';
+    autoDesc = 'Режим спокойной включённости — твоя основная территория. Это хороший ресурс, но обрати внимание, легко ли ты из него выбиваешься.';
+    autoPractice = 'Проверка режима: 3 раза в день замечай, в каком ты режиме. Одно слово. Не меняй — просто замечай.';
+  } else if (mob >= frz) {
+    autoLabel = 'Преобладает мобилизация';
+    autoDesc = 'Твоя нервная система проводит много времени в режиме «на взводе». Это не дефект — это адаптация. Но она стоит энергии.';
+    autoPractice = 'Удлинённый выдох: вдох на 4, выдох на 6–8 счётов. 2 минуты, несколько раз в день. Особенно перед сном.';
+  } else {
+    autoLabel = 'Преобладает замирание';
+    autoDesc = 'Твоя система часто уходит в энергосберегающий режим. Мир может казаться приглушённым. Это защитная реакция, и с ней можно работать.';
+    autoPractice = 'Мягкое ритмичное движение: ходьба, покачивание, растяжка. Маленькая доза активации, без перегрузки. Каждый день.';
+  }
+  const autoScore = conn; // use connection % as radar score
+
+  // 2. Interoception: sum of 5 items (1-5 each) → 5-25
+  const interoSum = (answers.i1||3)+(answers.i2||3)+(answers.i3||3)+(answers.i4||3)+(answers.i5||3);
+  const interoNorm = (interoSum - 5) / 20; // 0-1
+  let interoLabel, interoDesc, interoPractice;
+  if (interoSum >= 20) {
+    interoLabel = 'Высокая чувствительность';
+    interoDesc = 'Ты много замечаешь в своём теле. Это ценный ресурс — если сигналы точные. Обрати внимание, не интерпретируешь ли ты ощущения через тревожные мысли.';
+    interoPractice = 'Называй ощущение, а не эмоцию: «тёплое», «зажатое», «трепещущее» — задержись на сыром ощущении 10 секунд, прежде чем давать ему имя.';
+  } else if (interoSum >= 13) {
+    interoLabel = 'Умеренная чувствительность';
+    interoDesc = 'Некоторые сигналы проходят, другие нет. Это нормально — у большинства людей так. Практика может расширить канал.';
+    interoPractice = '60-секундное сканирование тела: 3 раза в день пройди вниманием от стоп до головы. Просто заметь, что есть. Не меняй.';
+  } else {
+    interoLabel = 'Тихий канал';
+    interoDesc = 'Сигналы из тела редко доходят до сознания. Это не проблема, а особенность — многие люди так живут. Но этот канал можно развить.';
+    interoPractice = 'Начни с простого: заметь тепло в руках после горячей чашки, ощущение стоп на полу. Строй от того, что уже заметно.';
+  }
+
+  // 3. Sensory: items 1-4 sensitivity (4-20), item 5 seeking (1-5)
+  const sensSum = (answers.s1||3)+(answers.s2||3)+(answers.s3||3)+(answers.s4||3);
+  const sensSeek = answers.s5 || 3;
+  const sensNorm = (sensSum - 4) / 16;
+  let sensLabel, sensDesc, sensPractice;
+  if (sensSum >= 16) {
+    sensLabel = 'Высокая чувствительность';
+    sensDesc = 'Твоя система регистрирует много. Перестимуляция — реальный риск. Это не слабость, а особенность нервной системы, с которой нужно считаться.';
+    sensPractice = 'Определи свои топ-3 триггера и закладывай время на восстановление после них. Шумоподавляющие наушники, затемнённая комната — не роскошь, а обслуживание системы.';
+  } else if (sensSum >= 10) {
+    sensLabel = 'Умеренная чувствительность';
+    sensDesc = 'Что-то проходит, что-то нет. Твоя система фильтрует неплохо, но в определённых условиях может перегружаться.';
+    sensPractice = 'Сенсорный дневник на неделю: 3 раза в день отмечай — что замечаю, что мешает, чего не хватает, как энергия. Паттерны станут видны.';
+  } else {
+    sensLabel = 'Высокий порог';
+    sensDesc = 'Твоей системе нужно больше входящей информации, чтобы включиться. Тихая среда может ощущаться как пустота.';
+    sensPractice = 'Замечай, когда ты недостимулирован, и давай себе стимуляцию осознанно — музыка, движение, холодная вода — до того, как начнёшь искать её импульсивно.';
+  }
+
+  // 4. Attachment: anxiety (items 1-3, 1-7 each) → 3-21, avoidance (items 4-6) → 3-21
+  const anxSum = (answers.at1||4)+(answers.at2||4)+(answers.at3||4);
+  const avdSum = (answers.at4||4)+(answers.at5||4)+(answers.at6||4);
+  const anxNorm = (anxSum - 3) / 18;
+  const avdNorm = (avdSum - 3) / 18;
+  const attNorm = 1 - (anxNorm + avdNorm) / 2; // higher = more secure
+  let attLabel, attDesc, attPractice;
+  if (anxSum <= 10 && avdSum <= 10) {
+    attLabel = 'Безопасность доступна';
+    attDesc = 'Близость не вызывает паники и не заставляет бежать. Это хороший ресурс. Обрати внимание, бывают ли исключения — отношения, в которых паттерн меняется.';
+    attPractice = 'Рефлексия момента: раз в день вспомни одно взаимодействие. Что произошло, что почувствовал в теле, что сделал. Без осуждения.';
+  } else if (anxSum > 10 && avdSum <= 10) {
+    attLabel = 'Тревога в близости';
+    attDesc = 'Ты хочешь близости интенсивно, но боишься, что она исчезнет. Отношения ощущаются как высокие ставки. Это не «слишком много чувств» — это стратегия, которая когда-то помогала.';
+    attPractice = 'Когда чувствуешь порыв проверить или попросить подтверждения — найди ощущение в теле. Сжатие? Пустота? Побудь с ним 30 секунд перед действием.';
+  } else if (anxSum <= 10 && avdSum > 10) {
+    attLabel = 'Ценность автономии';
+    attDesc = 'Ты высоко ценишь независимость. Близость может ощущаться как угроза свободе. Это не холодность — это защитная стратегия.';
+    attPractice = 'Замечай, когда отстраняешься. Что спровоцировало? Уязвимость? Зависимость? Просто зафиксируй момент и ощущение в теле.';
+  } else {
+    attLabel = 'Тяни-толкай';
+    attDesc = 'Ты хочешь близости и боишься её одновременно. Приближаешься — и отталкиваешь. Это один из самых непростых паттернов, и он поддаётся работе.';
+    attPractice = 'Отслеживай качели: когда тянет ближе и когда отталкивает. Записывай оба движения. Само осознание цикла — первый шаг к тому, чтобы в нём не застревать.';
+  }
+
+  // 5. Allostatic load: sum of 7 items (0-3 each) → 0-21
+  const alloSum = (answers.al1||0)+(answers.al2||0)+(answers.al3||0)+(answers.al4||0)+(answers.al5||0)+(answers.al6||0)+(answers.al7||0);
+  const alloNorm = 1 - alloSum / 21; // invert: higher = less load = better
+  let alloLabel, alloDesc, alloPractice;
+  if (alloSum <= 5) {
+    alloLabel = 'Низкая нагрузка';
+    alloDesc = 'Твоя система хорошо восстанавливается. Организм справляется с текущим уровнем нагрузки.';
+    alloPractice = 'Защити одно окно восстановления: 30 минут, 3+ раза в неделю. Активность, после которой тебе реально лучше. Не теряй его, когда жизнь ускорится.';
+  } else if (alloSum <= 10) {
+    alloLabel = 'Умеренная нагрузка';
+    alloDesc = 'Износ начинает проявляться. Организм справляется, но запас прочности сокращается. Хорошее время обратить внимание.';
+    alloPractice = 'Стресс-аудит: 20 минут с бумагой. Перечисли все повторяющиеся нагрузки. Отметь: (а) могу уменьшить, (б) могу лучше восстанавливаться, (в) не могу изменить сейчас.';
+  } else if (alloSum <= 15) {
+    alloLabel = 'Высокая нагрузка';
+    alloDesc = 'Несколько систем сигнализируют о перенапряжении. Это серьёзно — тело ведёт счёт, даже если ты привык не замечать.';
+    alloPractice = 'Стресс-аудит + обязательно защити сон. Сон — главный восстановительный механизм. Всё остальное вторично, пока сон разрушен.';
+  } else {
+    alloLabel = 'Очень высокая нагрузка';
+    alloDesc = 'Тело несёт значительный груз. Пожалуйста, рассмотри консультацию со специалистом наряду с самостоятельными практиками.';
+    alloPractice = 'Приоритет №1: снизить входящую нагрузку. Практики помогают, но не компенсируют неустойчивую ситуацию. Что можно убрать или делегировать прямо сейчас?';
+  }
+
+  return {
+    radar: [autoScore, interoNorm, sensNorm, attNorm, alloNorm],
+    cards: [
+      { icon: '🌊', title: 'Нервная система', label: autoLabel, desc: autoDesc, practice: autoPractice, color: 'green' },
+      { icon: '🫀', title: 'Ощущение тела', label: interoLabel, desc: interoDesc, practice: interoPractice, color: 'yellow' },
+      { icon: '👁', title: 'Сенсорная обработка', label: sensLabel, desc: sensDesc, practice: sensPractice, color: 'blue' },
+      { icon: '🤝', title: 'Близость с другими', label: attLabel, desc: attDesc, practice: attPractice, color: 'purple' },
+      { icon: '🔋', title: 'Стрессовая нагрузка', label: alloLabel, desc: alloDesc, practice: alloPractice, color: 'red' },
+    ]
+  };
+}
+
+function showResults() {
+  document.getElementById('quiz').classList.remove('active');
+  document.getElementById('results').classList.add('active');
+  document.getElementById('progressBar').style.width = '100%';
+
+  const res = computeResults();
+  renderRadar(res.radar);
+  renderCards(res.cards);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderRadar(values) {
+  const cx = 200, cy = 195, r = 140;
+  const labels = ['Нервная\nсистема', 'Ощущение\nтела', 'Сенсорная\nобработка', 'Близость', 'Стрессовая\nнагрузка'];
+  const n = 5;
+  const angles = Array.from({length: n}, (_, i) => (Math.PI * 2 * i / n) - Math.PI / 2);
+
+  function polar(angle, radius) {
+    return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+  }
+
+  function polygon(radius) {
+    return angles.map(a => polar(a, radius).join(',')).join(' ');
+  }
+
+  let svg = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">`;
+
+  // Grid
+  [0.25, 0.5, 0.75, 1].forEach(s => {
+    svg += `<polygon class="radar-grid" points="${polygon(r * s)}"/>`;
+  });
+
+  // Axis lines
+  angles.forEach(a => {
+    const [x, y] = polar(a, r);
+    svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--bg-warm').trim()}" stroke-width="1"/>`;
+  });
+
+  // Data shape
+  const dataPoints = values.map((v, i) => polar(angles[i], r * Math.max(0.05, v)));
+  svg += `<polygon class="radar-shape" points="${dataPoints.map(p => p.join(',')).join(' ')}"/>`;
+
+  // Dots
+  dataPoints.forEach(([x, y]) => {
+    svg += `<circle class="radar-dot" cx="${x}" cy="${y}" r="5"/>`;
+  });
+
+  // Labels
+  const labelOffsets = [
+    [0, -18],
+    [20, 0],
+    [14, 14],
+    [-14, 14],
+    [-20, 0]
+  ];
+
+  angles.forEach((a, i) => {
+    const [x, y] = polar(a, r + 30);
+    const lines = labels[i].split('\n');
+    const anchor = i === 0 ? 'middle' : (i <= 2 ? 'start' : 'end');
+    svg += `<text class="radar-label" x="${x + labelOffsets[i][0]}" y="${y + labelOffsets[i][1]}" text-anchor="${anchor}">`;
+    lines.forEach((line, li) => {
+      svg += `<tspan x="${x + labelOffsets[i][0]}" dy="${li === 0 ? 0 : 14}">${line}</tspan>`;
+    });
+    svg += `</text>`;
+
+    // Value percentage
+    const pctVal = Math.round(values[i] * 100);
+    svg += `<text class="radar-value" x="${x + labelOffsets[i][0]}" y="${y + labelOffsets[i][1] + (lines.length > 1 ? 26 : 16)}" text-anchor="${anchor}">${pctVal}%</text>`;
+  });
+
+  svg += `</svg>`;
+  document.getElementById('chartWrap').innerHTML = svg;
+}
+
+function renderCards(cards) {
+  let html = '';
+  cards.forEach((c, i) => {
+    html += `
+      <div class="result-card color-${c.color}" style="animation-delay:${0.7 + i * 0.15}s">
+        <div class="result-card-header">
+          <div class="result-icon">${c.icon}</div>
+          <h3 class="serif">${c.title}</h3>
+          <span class="result-tag">${c.label}</span>
+        </div>
+        <div class="result-description">${c.desc}</div>
+        <div class="result-practice">
+          <div class="result-practice-label">Стартовая практика</div>
+          <p>${c.practice}</p>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('resultCards').innerHTML = html;
+}
+
+function restart() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('hero').style.display = '';
+  document.getElementById('progressBar').style.width = '0%';
+  window.scrollTo({ top: 0 });
+}
+</script>
+
+</body>
+</html>
